@@ -1,0 +1,8 @@
+#!/bin/sh
+
+FILENAME=k`basename $3`
+
+echo "#include \"Resources.h\"\n" > $2
+echo "data 'PICT' (${FILENAME%%.*}) {" >> $2
+hexdump -v -f ~/bin/hexdump-PICT.txt -s 512 $1 | sed 's/Q/\"/g' >> $2
+echo "};" >> $2
